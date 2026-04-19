@@ -33,7 +33,7 @@ export default function AdminUsersPage() {
 
   function removeUser(id: string) {
     const name = users.find((u) => u.id === id)?.name
-    setRemoved((prev) => new Set([...prev, id]))
+    setRemoved((prev) => new Set(Array.from(prev).concat(id)))
     showToast(`${name} removed`)
   }
 
