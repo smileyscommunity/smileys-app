@@ -88,10 +88,76 @@ export default function AdminPage() {
       <div className="grid grid-cols-4 gap-4">
         <StatCard title="Members"   value={totalMembers.toLocaleString()}   change="+12%"  data={[8, 14, 22, 31, 47, 56, totalMembers]} />
         <StatCard title="Events"    value={events.length.toString()}        change={`+${upcomingEvents.length} upcoming`} data={[2, 3, 3, 4, 4, 5, events.length]} />
-        <StatCard title="Hosts"     value={totalHosts.toString()}           change="+2 this month" data={[3, 4, 4, 5, 5, 6, totalHosts]} /> 4, 4, 5, events.length]} />
-        <StatCard title="Hosts"     value={totalHosts.toString()}           change="+2 this month" data={[3, 4, 4, 5, 5, 6, totalHosts]} />
-        <StatCard title="Attendees" value={totalAttendees.toLocaleString()} change="+18%"  data={[120, 180, 210, 260, 310, 380, totalAttendees]} />
+        <div className="grid grid-cols-3 gap-6">
+        <div className="col-span-2 bg-zinc-900 p-5 rounded-2xl">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-base font-semibold">Upcoming Events</h2>
+            <Link href="/admin/events" className="text-xs text-amber-400 hover:underline font-medium">View all</Link>
+          </div>
+          <EventsTable />
+        </div>
+        <div className="bg-zinc-900 p-5 rounded-2xl">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-base font-semibold">Top Hosts</h2>
+            <Link href="/admin/hosts" className="text-xs text-amber-400 hover:underline font-medium">Manage</Link>
+          </div>
+          <div className="space-y-2">
+            {topHosts.map(({ host, eventCount, rate }) => (
+              <HostCard key={host.id} name={host.name} events={eventCount} rate={rate} />
+            ))}
+          </div>
+        </div>
       </div>
-      <div className="flex gap-3">
-        <Link href="/admin/events/new" className="bg-white text-black px-4 py-2 rounded-xl text-sm font-semibold hover:bg-zinc-100 transition-colors">+ Create Event</Link>
-        <Link href="/admin/hosts"
+      <div className="grid grid-cols-3 gap-6">
+        <div className="col-span-2 bg-zinc-900 rounded-2xl overflow-hidden">
+          <div className="flex items-center justify-between px-5 py-4 border-b border-zinc-800">
+            <h2 className="text-base font-semibold">Clubs Performance</h2>
+            <Link href="/admin/clubs" className="text-xs text-amber-400 hover:underline font-medium">Manage</Link>
+          </div>
+          <div className="grid grid-cols-12 gap-3 px-5 py-2.5 text-[11px] font-bold text-zinc-600 uppercase tracking-wider border-b border-zinc-800">
+            <div className="col-span-4">Club</div>
+            <div className="col-span-2 text-center">Members</div>
+            <div className="col-span-3 text-center">This Week</div>
+            <div className="col-span-3 text-center">Growth</div>
+          </div>
+          <div className="divide-y divide-zinc-800">
+            {clubsPerf.map(({ club, members, weekEvents, growth }) => (
+              <div key={club.id} className="grid grid-cols-12 gap-3 px-5 py-3.5 items-center hover:bg-zinc-800/50 transition-colors">
+                <div className="col-span-4 flex items-center gap-3 min-w-0">
+                  <div className={`w-8 h-8 rounded-lg ${club.bgColor} flex items-center justify-center text-lg shrink-0`}>{club.emoji}</div>
+                  <div className="min-w-0">
+                    <div className="text-sm font-semibold text-white truncate">{club.name}</div>
+                    <div className="text-xs text-zinc-500">{club.category}</div>
+                  </div>
+                </div>
+                <div className="col-span-2 text-center text-sm font-semibold text-zinc-300">{members.toLocaleString()}</div>
+                <div className="col-span-3 text-center text-sm font-semibold text-zinc-300">{weekEvents}</div>
+                <div className="col-span-3 text-center">
+                  <span className={`text-sm font-bold ${growth >= 15 ? 'text-green-400' : growth >= 5 ? 'text-amber-400' : 'text-zinc-500'}`}>
+                    +{growth}%
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="bg-zinc-900 rounded-2xl overflow-hidden">
+          <div className="px-5 py-4 border-b border-zinc-800">
+            <h2 className="text-base font-semibold">Activity Feed</h2>
+          </div>
+          <div className="divide-y divide-zinc-800">
+            {activityFeed.map((item) => (
+              <div key={item.id} className="flex items-start gap-3 px-5 py-3 hover:bg-zinc-800/50 transition-colors">
+                <span className="text-base shrink-0 mt-0.5">{item.icon}</span>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs text-zinc-300 leading-snug">{item.text}</p>
+                  <p className="text-[10px] text-zinc-600 mt-0.5">{item.time}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
