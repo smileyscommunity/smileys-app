@@ -30,7 +30,7 @@ export default function AdminEventsPage() {
   }
 
   function handleDelete(event: Event) {
-    setDeleted((prev) => new Set([...prev, event.id]))
+    setDeleted((prev) => new Set(Array.from(prev).concat(event.id)))
     showToast(`"${event.title}" deleted`)
   }
 
