@@ -8,9 +8,7 @@ import { getEventById, clubs, hosts, vibeConfig, VibeTag } from '@/lib/data'
 const VIBES = Object.keys(vibeConfig) as VibeTag[]
 const EMOJIS = ['⛵', '🍽️', '💬', '🎵', '🌿', '🎭', '🏃', '🎨', '🍷', '🧘', '🥾', '🎤']
 
-
-export default function EditEventClient({
-
+export default function EditEventClient({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params)
   const event = getEventById(id)
 
