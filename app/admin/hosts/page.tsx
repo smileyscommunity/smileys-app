@@ -103,7 +103,7 @@ export default function AdminHostsPage() {
   function toggleStatus(id: string) {
     const host = hostList.find((h) => h.id === id)!
     setStatuses((prev) => {
-      const next = { ...prev, [id]: prev[id] === 'active' ? 'disabled' : 'active' }
+      const next = { ...prev, [id]: prev[id] === 'active' ? 'disabled' : 'active' } as Record<string, 'active' | 'disabled'>
       showToast(next[id] === 'active' ? `${host.name} re-enabled ✓` : `${host.name} disabled`)
       return next
     })
