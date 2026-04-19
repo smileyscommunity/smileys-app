@@ -188,7 +188,7 @@ export default function AdminClubsPage() {
                     </div>
                     <div className="flex gap-2">
                       <button
-                        startEdit(club)
+                        startEdit(club1
                         className="text-xs px-3 py-1.5 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors font-medium"
                       >
                         Edit
