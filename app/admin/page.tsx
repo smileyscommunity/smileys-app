@@ -33,7 +33,7 @@ const weekEndStr   = weekEnd.toISOString().split('T')[0]
 
 const clubGrowth: Record<string, number> = { '1': 12, '2': 8, '3': 18, '4': 25, '5': 5 }
 
-const clubsPerf = clubs.map((club) => {
+setRemoved((prev) => new Set(Array.from(prev).concat(id)))
   const clubEvents = events.filter((e) => e.clubId === club.id)
   const weekEvents = clubEvents.filter((e) => e.date >= weekStartStr && e.date <= weekEndStr).length
   const growth     = clubGrowth[club.id] ?? 0
