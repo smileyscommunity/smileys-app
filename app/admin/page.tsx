@@ -62,14 +62,14 @@ const alerts = [
 ].filter(Boolean) as { icon: string; text: string; color: string }[]
 
 const activityFeed = [
-  { id: 1, icon: '👤', text: 'Ayşe Kaya joined the community',         time: '2m ago'  },
-  { id: 2, icon: '📅', text: 'Sunset Sailing — 1 new registration',    time: '8m ago'  },
-  { id: 3, icon: '💬', text: 'Language Exchange — 3 new spots filled',  time: '15m ago' },
-  { id: 4, icon: '💳', text: 'Payment received from Carlos Mendez',     time: '22m ago' },
-  { id: 5, icon: '⭐', text: 'Flow by Smileys published a new event',  time: '1h ago'  },
-  { id: 6, icon: '👤', text: 'James Reed joined Smileys Sailing Club',  time: '1h ago'  },
-  { id: 7, icon: '💳', text: 'Payment received from Zeynep Arslan',     time: '2h ago'  },
-  { id: 8, icon: '📅', text: 'Rooftop DJ Night — 5 spots left',         time: '3h ago'  },
+  { id: 1, icon: '👤', text: 'Ayse Kaya joined the community',        time: '2m ago'  },
+  { id: 2, icon: '📅', text: 'Sunset Sailing - 1 new registration',   time: '8m ago'  },
+  { id: 3, icon: '💬', text: 'Language Exchange - 3 new spots filled', time: '15m ago' },
+  { id: 4, icon: '💳', text: 'Payment received from Carlos Mendez',    time: '22m ago' },
+  { id: 5, icon: '⭐', text: 'Flow by Smileys published a new event', time: '1h ago'  },
+  { id: 6, icon: '👤', text: 'James Reed joined Smileys Sailing Club', time: '1h ago'  },
+  { id: 7, icon: '💳', text: 'Payment received from Zeynep Arslan',    time: '2h ago'  },
+  { id: 8, icon: '📅', text: 'Rooftop DJ Night - 5 spots left',        time: '3h ago'  },
 ]
 
 export default function AdminPage() {
@@ -88,6 +88,7 @@ export default function AdminPage() {
       <div className="grid grid-cols-4 gap-4">
         <StatCard title="Members"   value={totalMembers.toLocaleString()}   change="+12%"  data={[8, 14, 22, 31, 47, 56, totalMembers]} />
         <StatCard title="Events"    value={events.length.toString()}        change={`+${upcomingEvents.length} upcoming`} data={[2, 3, 3, 4, 4, 5, events.length]} />
+        <StatCard title="Hosts"     value={totalHosts.toString()}           change="+2 this month" data={[3, 4, 4, 5, 5, 6, totalHosts]} /> 4, 4, 5, events.length]} />
         <StatCard title="Hosts"     value={totalHosts.toString()}           change="+2 this month" data={[3, 4, 4, 5, 5, 6, totalHosts]} />
         <StatCard title="Attendees" value={totalAttendees.toLocaleString()} change="+18%"  data={[120, 180, 210, 260, 310, 380, totalAttendees]} />
       </div>
