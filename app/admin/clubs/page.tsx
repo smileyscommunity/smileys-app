@@ -34,7 +34,7 @@ export default function AdminClubsPage() {
   }
 
   function deleteClub(id: string) {
-    setDeleted((prev) => new Set([...prev, id]))
+   setDeleted((prev) => new Set(Array.from(prev).concat(id)))
     const name = clubList.find((c) => c.id === id)?.name
     showToast(`"${name}" deleted`)
   }
